@@ -13,8 +13,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -37,32 +35,31 @@ public class Main {
         almuerzos.add(almuerzo3);
         
 
-        BufferedReader reader = new BufferedReader(new FileReader("c:\\drivers\\texto.txt"));
-        String linea = reader.readLine();
+        BufferedReader reader = new BufferedReader(new FileReader("d:\\texto.txt"));
+        String linea;
+        while((linea = reader.readLine())!=null){
         System.out.println(drone.obtenerPosicion());
-        for(int i = 0; i<linea.length(); i++){
-            String result =linea.substring(i, (i+1));
-            if(result.equalsIgnoreCase("A")){
-                drone.moverHaciaAdelante();
-                System.out.println("A"+drone.obtenerPosicion());
+            for(int i = 0; i<linea.length(); i++){
+                String result =linea.substring(i, (i+1));
+                if(result.equalsIgnoreCase("A")){
+                    drone.moverHaciaAdelante(drone.getPuntoCardinal());
+                    System.out.println("A "+drone.obtenerPosicion());
+                }
+                if(result.equalsIgnoreCase("I")){
+                    drone.moverHaciaLaIzquierda(drone.getPuntoCardinal());
+                    System.out.println("I "+drone.obtenerPosicion());
+                }
+                if(result.equalsIgnoreCase("D")){
+                    drone.moverHaciaLaDerecha(drone.getPuntoCardinal());
+                    System.out.println("D "+drone.obtenerPosicion());
+                }
+//                if((i+1)>=linea.length()){
+//                    drone.restablecerPosicion();
+//                }
             }
-            if(result.equalsIgnoreCase("I")){
-                drone.moverHaciaAdelante();
-                System.out.println("I"+drone.obtenerPosicion());
-            }
-            if(result.equalsIgnoreCase("D")){
-                drone.moverHaciaAdelante();
-                System.out.println("D"+drone.obtenerPosicion());
-            }
-            
         }
             
         System.out.println(linea);
-        
-        
-
-        drone.moverHaciaAdelante();
-        
         
         if(almuerzos.size()>3){
             System.out.println("El Dron solo puede llevar TRES almuerzo "

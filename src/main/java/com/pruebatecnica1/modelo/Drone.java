@@ -14,7 +14,7 @@ public class Drone {
     private int x = 0;
     private int y = 0;
     private String puntoCardinal="N";
-
+    
     public int getX() {
         return x;
     }
@@ -31,16 +31,52 @@ public class Drone {
         return  "La posición del Dron es ("+getX()+","+getY()+","+getPuntoCardinal()+")";        
     }
             
-    public void moverHaciaAdelante(){
-        y += 1;
+    public void moverHaciaAdelante(String puntoCardinalActual){
+        
+        switch(puntoCardinalActual){
+            case "N" : this.y += 1;
+            break;
+            case "OC" : this.x -= 1; 
+            break;
+            case "S" : this.y -= 1; 
+            break;
+            case "OR" : this.x += 1; 
+            break;
+        }
     }
     
-    public void moverHaciaLaIzquierda(){
-        x -= 1;
+    public void moverHaciaLaIzquierda(String puntoCardinalActual){
+        
+        switch(puntoCardinalActual){
+            case "N" : this.puntoCardinal = "OC";
+            break;
+            case "OC" : this.puntoCardinal = "S"; 
+            break;
+            case "S" : this.puntoCardinal = "OR"; 
+            break;
+            case "OR" : this.puntoCardinal = "N"; 
+            break;
+        }
     }
     
-    public void moverHaciaLaDerecha(){
-        x += 1;
+    public void moverHaciaLaDerecha(String puntoCardinalActual){
+        
+        switch(puntoCardinalActual){
+            case "N" : this.puntoCardinal = "OR";
+            break;
+            case "OR" : this.puntoCardinal = "S"; 
+            break;
+            case "S" : this.puntoCardinal = "OC"; 
+            break;
+            case "OC" : this.puntoCardinal = "N"; 
+            break;
+        }
+    }
+    
+    public void restablecerPosicion(){
+        this.x = 0;
+        this.y = 0;
+        this.puntoCardinal = "N";
     }
     
     @Override
