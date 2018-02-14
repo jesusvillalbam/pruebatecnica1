@@ -40,7 +40,7 @@ public class Drone {
             break;
             case "S" : this.y -= 1; 
             break;
-            case "OR" : this.x += 1; 
+            case "OR" : if(x<0){this.x += (-1); }else{this.x += 1;}
             break;
         }
     }
