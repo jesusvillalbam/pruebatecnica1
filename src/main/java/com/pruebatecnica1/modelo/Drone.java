@@ -11,9 +11,14 @@ package com.pruebatecnica1.modelo;
  */
 public class Drone {
     
+    private String nombre;
     private int x = 0;
     private int y = 0;
     private String puntoCardinal="N";
+
+    public Drone(String nombre) {
+        this.nombre = nombre;
+    }
     
     public int getX() {
         return x;
@@ -28,7 +33,11 @@ public class Drone {
     }
     
     public String obtenerPosicion(){
-        return  "La posición del Dron es ("+getX()+","+getY()+","+getPuntoCardinal()+")";        
+        return  "("+getX()+","+getY()+","+getPuntoCardinal()+")";        
+    }
+
+    public String getNombre() {
+        return nombre;
     }
             
     public void moverHaciaAdelante(String puntoCardinalActual){
@@ -36,11 +45,11 @@ public class Drone {
         switch(puntoCardinalActual){
             case "N" : this.y += 1;
             break;
-            case "OC" : this.x -= 1; 
+            case "E" : this.x -= 1; 
             break;
             case "S" : this.y -= 1; 
             break;
-            case "OR" : if(x<0){this.x += (-1); }else{this.x += 1;}
+            case "O" : if(x<0){this.x += (-1); }else{this.x += 1;}
             break;
         }
     }
@@ -48,13 +57,13 @@ public class Drone {
     public void moverHaciaLaIzquierda(String puntoCardinalActual){
         
         switch(puntoCardinalActual){
-            case "N" : this.puntoCardinal = "OC";
+            case "N" : this.puntoCardinal = "E";
             break;
-            case "OC" : this.puntoCardinal = "S"; 
+            case "E" : this.puntoCardinal = "S"; 
             break;
-            case "S" : this.puntoCardinal = "OR"; 
+            case "S" : this.puntoCardinal = "O"; 
             break;
-            case "OR" : this.puntoCardinal = "N"; 
+            case "O" : this.puntoCardinal = "N"; 
             break;
         }
     }
@@ -62,13 +71,13 @@ public class Drone {
     public void moverHaciaLaDerecha(String puntoCardinalActual){
         
         switch(puntoCardinalActual){
-            case "N" : this.puntoCardinal = "OR";
+            case "N" : this.puntoCardinal = "O";
             break;
-            case "OR" : this.puntoCardinal = "S"; 
+            case "O" : this.puntoCardinal = "S"; 
             break;
-            case "S" : this.puntoCardinal = "OC"; 
+            case "S" : this.puntoCardinal = "E"; 
             break;
-            case "OC" : this.puntoCardinal = "N"; 
+            case "E" : this.puntoCardinal = "N"; 
             break;
         }
     }
@@ -78,11 +87,16 @@ public class Drone {
         this.y = 0;
         this.puntoCardinal = "N";
     }
-    
+
     @Override
     public String toString() {
-        return "Drone{" + "x=" + x + ", y=" + y + '}';
+        return "Drone{" + "nombre=" + nombre + ", "
+                + "x=" + x + ", "
+                + "y=" + y + ", "
+                + "puntoCardinal=" + puntoCardinal + '}';
     }
+    
+
     
     
 }
